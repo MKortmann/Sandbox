@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { User } from '../../models/User';
+
 // Decorator: we add the metadata here
 @Component({
   selector: 'app-user',
@@ -9,57 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   // Properties
-  firstName: String = 'John';
-  lastName: String = 'Doe';
-  age: number = 30;
-  address = {
-    street: '50 Main st',
-    city: 'Boston',
-    state: 'MA',
-  };
-
-  foo: any;
-  hasKids: boolean;
-  // this has to be an array of numbers
-  numberArray: number[];
-  stringArray: string[];
-  mixedArray: any[];
-  myTuple: [string, number, boolean];
-  unusable: void;
-  u: undefined;
-  n: null;
-
+  // pointing to the user interface
+  user: User;
   // Method: Constructor: special component that runs at the moment the component is instantiated
   // Used  to inject dependencies
-  constructor() {
-    this.hasKids = true;
-    this.numberArray = [1, 2, 3];
-    this.stringArray = ['hello', 'world'];
-    this.mixedArray = [true, undefined, 'hello'];
-    this.myTuple = ['hello', 1, true];
-    this.unusable = undefined;
-    this.u = undefined;
-    this.n = null;
-    console.log(this.addNumber(1, 4));
-  }
-
-  addNumber(num1: number, num2: number): number {
-    return num1 + num2;
-  }
-
-  sayHello() {
-    console.log(`Hello ${this.firstName}`);
-  }
-
-  hasBirthday() {
-    this.age += 1;
-  }
-
-  showAge() {
-    return this.age;
-  }
+  constructor() {}
 
   // Lifecycle method that also runs when the component is initialized: used to AJAX calls,
   // server calls
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // The ngOnInit is the best place to add values to interfaces!
+    this.user = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30,
+      address: {
+        street: '50 Main st',
+        city: 'Boston',
+        state: 'MA',
+      },
+    };
+  }
 }
