@@ -7,4 +7,6 @@ export interface User {
     city?: String;
     state?: String;
   };
+  image?: string;
+  isActive?: boolean;
 }
