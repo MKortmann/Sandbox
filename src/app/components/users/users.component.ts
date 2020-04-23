@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   loaded: boolean = true;
   enableAdd: boolean = true;
   currentClasses = {};
+  currentStyles = {};
 
   constructor() {
     // USED TO DEPENDENCIES INJECTION
@@ -39,6 +40,8 @@ export class UsersComponent implements OnInit {
         },
         image: 'http://lorempixel.com/600/600/people/3',
         isActive: true,
+        balance: 100,
+        registered: new Date('01/02/2018 08:30:00'),
       },
       {
         firstName: 'Kevin',
@@ -51,6 +54,8 @@ export class UsersComponent implements OnInit {
         },
         image: 'http://lorempixel.com/600/600/people/2',
         isActive: false,
+        balance: 200,
+        registered: new Date('01/11/2017 06:30:00'),
       },
       {
         firstName: 'Karin',
@@ -63,6 +68,8 @@ export class UsersComponent implements OnInit {
         },
         image: 'http://lorempixel.com/600/600/people/1',
         isActive: true,
+        balance: 50,
+        registered: new Date('01/02/2020 08:30:00'),
       },
     ];
 
@@ -79,6 +86,7 @@ export class UsersComponent implements OnInit {
     // this.users = [];
 
     this.setCurrentClasses();
+    this.setCurrentStyles();
   }
 
   addUser(user: User) {
@@ -90,6 +98,13 @@ export class UsersComponent implements OnInit {
       'alert-success': this.enableAdd,
       'text-uppercase': this.enableAdd,
       'text-color': this.enableAdd,
+    };
+  }
+
+  setCurrentStyles() {
+    this.currentStyles = {
+      'padding-top': this.showExtended ? '0' : '120px',
+      'font-size': this.showExtended ? '' : '40px',
     };
   }
 }
