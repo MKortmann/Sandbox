@@ -1,70 +1,108 @@
-<h2>Users</h2>
-<button
-  [disabled]="!enableAdd"
-  class="btn btn-light btn-block mb-3"
-  [ngClass]="currentClasses"
->
-  Add New User
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mb-3">
+  Add User
 </button>
+<div class="card card-body my-3" *ngIf="showUserForm">
+  <h2>Add User</h2>
+  <form (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label>First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.firstName"
+        name="firstName"
+      />
+    </div>
+    {{ user.firstName }}
+    <div class="form-group">
+      <label>Last Name</label>
+      <input
+        (keyup)="fireEvent($event)"
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+      />
+    </div>
+    <div class="form-group">
+      <label>Age</label>
+      <input
+        (keyup)="fireEvent($event)"
+        type="number"
+        class="form-control"
+        [(ngModel)]="user.age"
+        name="age"
+      />
+    </div>
+    <div class="form-group">
+      <label>Street Address</label>
+      <input
+        (keyup)="fireEvent($event)"
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.address.street"
+        name="street"
+      />
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input
+        (keyup)="fireEvent($event)"
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.address.city"
+        name="city"
+      />
+    </div>
+    <div class="form-group">
+      <label>State</label>
+      <input
+        (keyup)="fireEvent($event)"
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.address.state"
+        name="state"
+      />
+    </div>
+    <button
+      (click)="addUser()"
+      [disabled]="user.firstName === '' || user.lastName === ''"
+      class="btn btn-light btn-block mb-3"
+    >
+      Add New User
+    </button>
+  </form>
+</div>
 <!-- users?.length : the question mark means it is ok if they do not exist -->
 <!-- so, noUsers is a template set below -->
-<ul class="list-unstyled" *ngIf="loaded && users?.length > 0; else noUsers">
+<ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
   <!-- we say that in the USERS ARRAY we get for each iteration
   the variable user. The user is in this case an object with key and properties.  -->
   <li
     class="card card-body mb-2"
     *ngFor="let user of users"
     [class.bg-light]="user.isActive"
-    [style.border-color]="user.isActive ? 'green' : ''"
   >
-    <div class="row">
-      <div class="col-sm-4">
-        <!-- THREE WAYS OF BINDING DATA:-->
-        <!-- 1) [src]="user.image" -->
-        <!-- 2) src="{{ user.image }}" -->
-        <!-- 3) bind-src="user.image" -->
-        <!-- <img *ngIf="user.image" class="img-fluid" [src]="user.image" alt="" /> -->
-        <img
-          *ngIf="user.image"
-          class="img-fluid"
-          src="{{ user.image }}"
-          alt=""
-        />
-        <!-- <img
-          *ngIf="user.image"
-          class="img-fluid"
-          bind-src="user.image"
-          alt=""
-        /> -->
-      </div>
-      <div class="col-sm-8">
-        <h3 [ngStyle]="currentStyles">
-          {{ user.firstName | uppercase }} {{ user.lastName | lowercase }}
-        </h3>
-        <ul class="list-group" *ngIf="showExtended && user.age && user.address">
-          <li class="list-group-item mb-1">Age: {{ user.age }}</li>
-          <li class="list-group-item">
-            Address: {{ user.address.street }}, {{ user.address.city }}, {{
-            user.address.state}
-          </li>
-          <li class="list-group-item">
-            Balance: {{ user.balance | currency: "GBP":"symbol" }} until
-            {{ 0.5 | percent }}
-          </li>
-          <li class="list-group-item">
-            Joined: {{ user.registered | date: "fullDate" }}
-          </li>
-          <li class="list-group-item" ngNonBindable>
-            <pre>{{ 5 | number: "1.4" }}</pre>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <h3>
+      {{ user.firstName }} {{ user.lastName }}
+      <small *ngIf="user.age && user.address"
+        ><button (click)="user.hide = !user.hide" class="btn btn-dark btn-sm">
+          <i [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button
+      ></small>
+    </h3>
+    <ul class="list-group" *ngIf="!user.hide && user.age && user.address">
+      <li class="list-group-item mb-1">Age: {{ user.age }}</li>
+      <li class="list-group-item">
+        Address: {{ user.address.street }}, {{ user.address.city }}, {{
+        user.address.state}
+      </li>
+      <li class="list-group-item">Joined: {{ user.registered | date }}</li>
+    </ul>
   </li>
 </ul>
 
-<ng-template #noUsers><h4>No users found!!!</h4></ng-template>
+<!-- <ng-template #noUsers><h4>No users found!!!</h4></ng-template> -->
 
-<!-- <h4 *ngIf="users.length === 0">No users found!</h4> -->
+<h4 *ngIf="users.length === 0">No users found!</h4>
 
 <h4 *ngIf="!loaded">Loading Users...</h4>

@@ -1,5 +1,19 @@
 <nav class="navbar navbar-dark bg-primary mb-4">
   <div class="container">
-    <a href="#" class="navbar-brand">Angular App</a>
+    <form (submit)="onSubmit($event)">
+      <div class="form-group">
+        <a href="#" (dblclick)="changeTitle($event)" class="navbar-brand"
+          >{{ title
+          }}<input
+            class="form-control mt-1"
+            type="text"
+            *ngIf="visible"
+            [(ngModel)]="title"
+            name="title"
+        /></a>
+      </div>
+
+      <!-- <button (click)="update()">Update</button> -->
+    </form>
   </div>
 </nav>
