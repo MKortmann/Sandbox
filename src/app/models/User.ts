@@ -1,12 +1,7 @@
 export interface User {
-  firstName: String;
-  lastName: String;
-  age?: Number;
-  address?: {
-    street?: String;
-    city?: String;
-    state?: String;
-  };
+  firstName: string;
+  lastName: string;
+  email: string;
   isActive?: boolean;
   balance?: number;
   registered?: any;

@@ -12,12 +12,7 @@ export class UsersComponent implements OnInit {
   user: User = {
     firstName: '',
     lastName: '',
-    age: null,
-    address: {
-      street: '',
-      city: '',
-      state: '',
-    },
+    email: '',
   };
   showExtended: boolean = true;
   // fechting data from outside source
@@ -41,12 +36,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'John',
         lastName: 'Doe',
-        age: 30,
-        address: {
-          street: '50 Main st',
-          city: 'Boston',
-          state: 'MA',
-        },
+        email: 'john@gmail.com',
         isActive: true,
         registered: new Date('01/02/2018 08:30:00'),
         hide: true,
@@ -54,12 +44,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Kevin',
         lastName: 'Johnson',
-        age: 34,
-        address: {
-          street: '550 Main st',
-          city: 'New York',
-          state: 'SDF',
-        },
+        email: 'kevin@yahoo.com',
         isActive: false,
         registered: new Date('01/11/2017 06:30:00'),
         hide: true,
@@ -67,12 +52,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Karin',
         lastName: 'Williams',
-        age: 26,
-        address: {
-          street: '55 Mill st',
-          city: 'Miami',
-          state: 'FL',
-        },
+        email: 'karin@gmail.com',
         isActive: true,
         registered: new Date('01/02/2020 08:30:00'),
         hide: true,
@@ -80,42 +60,28 @@ export class UsersComponent implements OnInit {
     ];
   }
 
-  addUser() {
-    // as push but add it to the begin of the array
-    console.log(this.user);
-    this.user.isActive = true;
-    this.user.registered = new Date();
-    this.users.unshift(this.user);
+  // addUser() {
+  //   // as push but add it to the begin of the array
+  //   console.log(this.user);
+  //   this.user.isActive = true;
+  //   this.user.registered = new Date();
+  //   this.users.unshift(this.user);
 
-    localStorage.setItem(
-      this.user.firstName.toString(),
-      JSON.stringify(this.user)
-    );
+  //   localStorage.setItem(
+  //     this.user.firstName.toString(),
+  //     JSON.stringify(this.user)
+  //   );
 
-    this.user = {
-      firstName: '',
-      lastName: '',
-      age: null,
-      address: {
-        street: '',
-        city: '',
-        state: '',
-      },
-    };
-  }
+  //   this.user = {
+  //     firstName: '',
+  //     lastName: '',
+  //     age: null,
+  //     email: '',
+  //   };
+  // }
 
   onSubmit(e) {
     e.preventDefault();
     console.log(123);
   }
-
-  fireEvent(e) {
-    console.log(e.type);
-    console.log(e.target.value);
-  }
-
-  // toggleHide(user: User) {
-  //   user.hide = !user.hide;
-  //   console.log(user);
-  // }
 }

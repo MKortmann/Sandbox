@@ -17,7 +17,6 @@
     <div class="form-group">
       <label>Last Name</label>
       <input
-        (keyup)="fireEvent($event)"
         type="text"
         class="form-control"
         [(ngModel)]="user.lastName"
@@ -25,48 +24,16 @@
       />
     </div>
     <div class="form-group">
-      <label>Age</label>
+      <label>Email</label>
       <input
-        (keyup)="fireEvent($event)"
-        type="number"
-        class="form-control"
-        [(ngModel)]="user.age"
-        name="age"
-      />
-    </div>
-    <div class="form-group">
-      <label>Street Address</label>
-      <input
-        (keyup)="fireEvent($event)"
         type="text"
         class="form-control"
-        [(ngModel)]="user.address.street"
-        name="street"
-      />
-    </div>
-    <div class="form-group">
-      <label>City</label>
-      <input
-        (keyup)="fireEvent($event)"
-        type="text"
-        class="form-control"
-        [(ngModel)]="user.address.city"
-        name="city"
-      />
-    </div>
-    <div class="form-group">
-      <label>State</label>
-      <input
-        (keyup)="fireEvent($event)"
-        type="text"
-        class="form-control"
-        [(ngModel)]="user.address.state"
-        name="state"
+        [(ngModel)]="user.email"
+        name="email"
       />
     </div>
     <button
-      (click)="addUser()"
-      [disabled]="user.firstName === '' || user.lastName === ''"
+      [disabled]="user.firstName === '' || user.lastName === '' || user.email"
       class="btn btn-light btn-block mb-3"
     >
       Add New User
@@ -85,17 +52,13 @@
   >
     <h3>
       {{ user.firstName }} {{ user.lastName }}
-      <small *ngIf="user.age && user.address"
-        ><button (click)="user.hide = !user.hide" class="btn btn-dark btn-sm">
+      <small>
+        <button (click)="user.hide = !user.hide" class="btn btn-dark btn-sm">
           <i [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"></i></button
       ></small>
     </h3>
-    <ul class="list-group" *ngIf="!user.hide && user.age && user.address">
-      <li class="list-group-item mb-1">Age: {{ user.age }}</li>
-      <li class="list-group-item">
-        Address: {{ user.address.street }}, {{ user.address.city }}, {{
-        user.address.state}
-      </li>
+    <ul class="list-group" *ngIf="!user.hide">
+      <li class="list-group-item mb-1">Email: {{ user.email }}</li>
       <li class="list-group-item">Joined: {{ user.registered | date }}</li>
     </ul>
   </li>
