@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+// ViewChild give us an access to a child component
 
 import { User } from '../../models/User';
 
@@ -19,6 +20,8 @@ export class UsersComponent implements OnInit {
   loaded: boolean = true;
   enableAdd: boolean = false;
   showUserForm: boolean = false;
+  // add to the form a view child decorator and pass the name of the form
+  @ViewChild('userForm') form: any;
 
   constructor() {
     // USED TO DEPENDENCIES INJECTION
@@ -80,8 +83,15 @@ export class UsersComponent implements OnInit {
   //   };
   // }
 
-  onSubmit(e) {
-    e.preventDefault();
-    console.log(123);
+  onSubmit({ value, valid }: { value: User; valid: boolean }) {
+    if (!valid) {
+      console.log('Form is not valid');
+    } else {
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+      this.users.unshift(value);
+      this.form.reset();
+    }
   }
 }

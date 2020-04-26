@@ -3,7 +3,7 @@
 </button>
 <div class="card card-body my-3" *ngIf="showUserForm">
   <h2>Add User</h2>
-  <form #userForm="ngForm" (submit)="onSubmit(userForm)">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label>First Name</label>
       <input
@@ -52,7 +52,7 @@
         type="email"
         [(ngModel)]="user.email"
         [ngClass]="{
-          'is-invalid': userEmail && userEmail.touched
+          'is-invalid': userEmail.errors && userEmail.touched
         }"
         class="form-control"
         name="email"
