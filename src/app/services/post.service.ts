@@ -24,4 +24,28 @@ export class PostService {
   savePost(post: Post): Observable<Post> {
     return this.http.post<Post>(this.postsUrl, post, httpOptions);
   }
+
+  uploadfile(file) {
+    console.log(file);
+  }
+
+  // updatePost(post: Post): Observable<Post> {
+  //   const url = `${this.postsUrl}/${post.id}`;
+  //   console.log(`${url}`);
+  //   console.log(`${post}`);
+
+  //   return this.http.put<Post>(url, post, httpOptions);
+  // }
+  updatePost(post: Post, id): Observable<Post> {
+    console.log(`Id here: ${id}`);
+
+    return this.http.put<Post>(this.postsUrl + '/' + id, post, httpOptions);
+  }
+
+  removePost(post: Post | number): Observable<Post> {
+    const id = typeof post === 'number' ? post : post.id;
+
+    const url = `${this.postsUrl}/${id}`;
+    return this.http.delete<Post>(url, httpOptions);
+  }
 }

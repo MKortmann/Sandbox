@@ -12,6 +12,9 @@ import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { UploadComponent } from './components/upload/upload.component';
+
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     NavbarComponent,
     PostsComponent,
     PostFormComponent,
+    UploadComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule],
   providers: [UserService, PostService],

@@ -42,6 +42,7 @@ export class UsersComponent implements OnInit {
     this.userService.getData().subscribe((data) => {
       console.log(data);
     });
+    // we are getting users through the observable
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
       this.loaded = true;

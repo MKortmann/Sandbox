@@ -57,6 +57,7 @@ export class UserService {
     // fecth and send us data.
     this.data = new Observable((observer) => {
       setTimeout(() => {
+        // after 1 sec it will fetch the data that are in the arguments of method next, in this case 1
         observer.next(1);
       }, 1000);
       setTimeout(() => {

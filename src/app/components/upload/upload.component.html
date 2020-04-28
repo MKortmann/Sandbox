@@ -1,0 +1,9 @@
+<!-- <form enctype="multipart/form-data" action="Upload.ashx" method="POST">
+  <input type="file" name="file" />
+  <button>Submit</button>
+</form> -->
+
+<form ng-controller="uploader">
+  <input type="file" ng-model="file" #file />
+  <button (click)="upload(file)">Upload</button>
+</form>
