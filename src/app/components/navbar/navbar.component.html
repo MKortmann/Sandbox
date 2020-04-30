@@ -1,8 +1,8 @@
-<nav class="navbar navbar-dark bg-primary mb-4">
+<nav class="navbar navbar-expand navbar-dark bg-primary mb-4">
   <div class="container">
     <form (submit)="onSubmit($event)">
       <div class="form-group">
-        <a href="#" (dblclick)="changeTitle($event)" class="navbar-brand"
+        <a routerLink="/" (dblclick)="changeTitle($event)" class="navbar-brand"
           >{{ title
           }}<input
             class="form-control mt-1"
@@ -12,8 +12,32 @@
             name="title"
         /></a>
       </div>
-
       <!-- <button (click)="update()">Update</button> -->
     </form>
+    <div>
+      <ul class="navbar-nav ml-auto">
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/" class="nav-link">Home</a>
+        </li>
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/users" class="nav-link">Users</a>
+        </li>
+        <li
+          class="nav-item"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/posts" class="nav-link">Posts</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

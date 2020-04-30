@@ -15,6 +15,9 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { UploadComponent } from './components/upload/upload.component';
 
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AppRoutingModule } from './/app-routing.module';
+import { HomeComponent } from './components/home/home.component';
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +28,10 @@ import { UploadComponent } from './components/upload/upload.component';
     PostsComponent,
     PostFormComponent,
     UploadComponent,
+    HomeComponent,
+    PostComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [UserService, PostService],
   bootstrap: [AppComponent],
 })
